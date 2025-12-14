@@ -5,21 +5,25 @@ import matplotlib.pyplot as plt
 import seaborn as sns
 from sklearn.linear_model import LinearRegression
 
+
+# Ensure kafka db is in the same directory as dashboard.py
+# Open terminal and run "streamlit run dashboard.py"
+
 # sqlite connection
 db_path = "kafka_data.db"
 conn = sqlite3.connect(db_path)
 
 #Clean up naming convention
 display_to_column = {
-    "Mean Temperature": "temp_mean__temp_moyenne",
-    "Max Temperature": "temp_max__temp_max",
-    "Min Temperature": "temp_min__temp_min",
-    "Total Precip": "total_precip__precip_totale",
-    "Rain": "rain_mm",
-    "Snow": "snow_mm",
-    "Sea Level Pressure": "pressure_sea_level_hpa",
-    "Station Pressure": "pressure_station_hpa",
-    "Wind Speed": "wind_speed_kph"
+    "Mean Temperature (C)": "temp_mean__temp_moyenne",
+    "Max Temperature (C)": "temp_max__temp_max",
+    "Min Temperature (C)": "temp_min__temp_min",
+    "Total Precip (mm)": "total_precip__precip_totale",
+    "Rain (mm)": "rain_mm",
+    "Snow (mm)": "snow_mm",
+    "Sea Level Pressure (hpa)": "pressure_sea_level_hpa",
+    "Station Pressure (hpa)": "pressure_station_hpa",
+    "Wind Speed (kph)": "wind_speed_kph"
 }
 
 numeric_cols = list(display_to_column.values())
@@ -317,4 +321,3 @@ elif analysis_mode == "Correlation Analysis":
     else:
         st.info("Select at least one predictor variable to run multiple linear regression.")
 
-pd.show_versions()
